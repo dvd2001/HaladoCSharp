@@ -1,0 +1,111 @@
+## Visual Studio / .NET Core / .NET Framework ##
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+TestResults/
+
+# Visual Studio cache files
+.vs/
+.vscode/
+*.csproj.user
+*.csproj.user.*
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.pidb
+*.boj
+
+# VSTest
+*.trx
+*.vstestresults
+
+# Code coverage
+*.coverage
+*.coverage.xml
+
+# Publish outputs
+publish/
+pub/
+*.publish.xml
+
+# NuGet Packages
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+# Paket dependency manager
+.paket/
+paket-files/
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Mac / Linux
+.DS_Store
+
+## WPF specific ##
+# Compiled XAML (usually inside bin/obj already)
+*.g.cs
+*.g.i.cs
+
+# Temporary files from Visual Studio designer
+*.tmp
+*.temp
+
+# ClickOnce (if you use it)
+*.pfx
+*.publish
+Application Files/
+
+# Installer outputs
+*.msi
+*.msm
+*.msp
+*.cab
+
+## .NET Core / .NET 5+ WPF ##
+# User-specific settings
+appsettings.*.json
+secrets.json
+
+# If you store any user data at runtime
+*.db
+
+## Tools ##
+# ReSharper
+_ReSharper*/
+*.ReSharper
+*.ReSharper.user
+*.DotSettings.user
+
+# JetBrains Rider
+.idea/
+
+# Cake build tool
+tools/
+
+## Logs and databases ##
+*.log
+*.sqlite
+
+## Runtime and temp ##
+*.pid
+*.seed
+*.pid.lock
+
+## Don't ignore these if you want to keep them in source control ##
+#!packages/repositories.config
+#!app.config
+#!App.config
