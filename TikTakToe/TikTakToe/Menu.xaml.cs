@@ -25,6 +25,7 @@ namespace TikTakToe
             isMulti = false;
             Game game = new Game(size, win, isMulti);
             game.Show();
+            game.Closed += (s, args) => this.Show();
             this.Hide();
         }
 
