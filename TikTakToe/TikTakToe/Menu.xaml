@@ -44,6 +44,7 @@
                 <ComboBoxItem Content="5x5"/>
                 <ComboBoxItem Content="6x6"/>
                 <ComboBoxItem Content="7x7"/>
+                <ComboBoxItem Content="10x10"/>
             </ComboBox>
             <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbWinSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
@@ -53,9 +54,9 @@
                 <ComboBoxItem Content="6"/>
                 <ComboBoxItem Content="7"/>
             </ComboBox>
-            <Button x:Name="btnSinglePLayer" Click="SinglePlayer_Click" Content="Single Player"/>
-                <Button x:Name="btnMultiPlayer" Click="Multiplayer_Click" Content="Multiplayer"/>
-                <Button x:Name="btnExit" Click="Exit_Click" Content="Exit"/>
+            <Button Click="SinglePlayer_Click" x:Name="btnSinglePLayer" Content="Single Player"/>
+            <Button Click="MultiPlayer_Click" x:Name="btnMultiPlayer" Content="Multiplayer"/>
+            <Button Click="Exit_Click" x:Name="btnExit" Content="Exit"/>
         </StackPanel>
 
     </Grid>
