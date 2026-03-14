@@ -1,0 +1,62 @@
+﻿<Window x:Class="TikTakToe.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TikTakToe"
+        mc:Ignorable="d"
+        Title="Tik Tak Toe" Height="600" Width="600">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="1" Grid.Row="1" Text="Tik Tak Toe" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0" Background="Transparent" />
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
+            <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbSizeSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="3x3" IsSelected="True"/>
+                <ComboBoxItem Content="4x4"/>
+                <ComboBoxItem Content="5x5"/>
+                <ComboBoxItem Content="6x6"/>
+                <ComboBoxItem Content="7x7"/>
+            </ComboBox>
+            <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbWinSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="3" IsSelected="True"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+                <ComboBoxItem Content="6"/>
+                <ComboBoxItem Content="7"/>
+            </ComboBox>
+            <Button x:Name="btnSinglePLayer" Click="SinglePlayer_Click" Content="Single Player"/>
+                <Button x:Name="btnMultiPlayer" Click="Multiplayer_Click" Content="Multiplayer"/>
+                <Button x:Name="btnExit" Click="Exit_Click" Content="Exit"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
