@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Tik Tak Toe" Height="600" Width="600">
+        Title="Tik Tak Toe" Height="600" Width="600" MinHeight="600" MinWidth="600">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -44,7 +44,6 @@
                 <ComboBoxItem Content="5x5"/>
                 <ComboBoxItem Content="6x6"/>
                 <ComboBoxItem Content="7x7"/>
-                <ComboBoxItem Content="10x10"/>
             </ComboBox>
             <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbWinSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
