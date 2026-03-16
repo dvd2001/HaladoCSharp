@@ -22,6 +22,10 @@ namespace TikTakToe
         {
             size = int.Parse(cbSizeSelector.SelectionBoxItem.ToString().Split('x')[0]);
             win = int.Parse(cbWinSelector.SelectionBoxItem.ToString());
+            if (win>size)
+            {
+                MessageBox.Show("Invalid game parameters. The win condition cannot be greater than the size if the board.")
+            }
             isMulti = false;
             Game game = new Game(size, win, isMulti);
             game.Show();
@@ -31,11 +35,20 @@ namespace TikTakToe
 
         private void MultiPlayer_Click(object sender, RoutedEventArgs e)
         {
+            
             size = int.Parse(cbSizeSelector.SelectionBoxItem.ToString().Split('x')[0]);
             win = int.Parse(cbWinSelector.SelectionBoxItem.ToString());
+            if(win>size)
+            {
+                MessageBox.Show("Invalid game parameters. The win condition cannot be greater than the size of the board.");
+                return;
+            }
             isMulti = true;
             Game game = new Game(size, win, isMulti);
-            return;
+            game.Show();
+            game.Closed += (s, args) => this.Show();
+            this.Hide();
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
