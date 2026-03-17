@@ -17,7 +17,6 @@ namespace TikTakToe
         private int winBy;
         private bool isPlayerOneTurn;
         private bool isMultiplayer;
-        private bool isEnded;
 
         public Game(int size, int win, bool isMulti)
         {
@@ -26,7 +25,6 @@ namespace TikTakToe
             winBy = win;
             isPlayerOneTurn = true;
             isMultiplayer = isMulti;
-            isEnded = false;
             InitializeComponent();
             NewGame();
         }
@@ -63,7 +61,6 @@ namespace TikTakToe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (isEnded) return;
             Button btn = sender as Button;
             int row = Grid.GetRow(btn);
             int col = Grid.GetColumn(btn);
@@ -75,28 +72,28 @@ namespace TikTakToe
             if (CheckWin())
             {
                 MessageBox.Show($"Player {(isPlayerOneTurn ? "1" : "2")} wins!");
-                isEnded = true;
+                this.Close();
                 return;
             }
-            if (!board.Cast<Marks>().Any(m=>m==Marks.Free))
+            if (!board.Any(m=>m==Marks.Free))
             {
                 MessageBox.Show("It's a draw!");
-                isEnded = true;
+                this.Close();
                 return;
             }
             if (!isMultiplayer)
             {
                 ComputerMove();
-                if (CheckWin())
+                if (CheckWin(true))
                 {
                     MessageBox.Show("Computer wins!");
-                    isEnded = true;
+                    this.Close();
                     return;
                 }
                 if (!board.Cast<Marks>().Any(m=>m==Marks.Free))
                 {
                     MessageBox.Show("It's a draw!");
-                    isEnded = true;
+                    this.Close();
                     return;
                 }
             }
@@ -120,100 +117,193 @@ namespace TikTakToe
             btn.Foreground = Brushes.Red;
         }
 
-        private bool CheckWin()
+        private bool CheckWin(bool isComputer = false)
         {
             List<string> rowsOrColomns = new List<string>(boardSize);
             List<string> diagnals = new List<string>(2 * boardSize - 1);
             for (int i = 0; i < boardSize; i++) rowsOrColomns.Add("");
             for (int i = 0; i < 2 * boardSize - 1; i++) diagnals.Add("");
-            //Check only the lines that could have been affected by the last move
-            for (int i = 0; i < boardSize; i++)
+            if (!isComputer)
             {
-                string result = "";
-                for(int j = 0;j < boardSize; j++)
+                //Check only the lines that could have been affected by the last move
+                for (int i = 0; i < boardSize; i++)
                 {
-                    if (board[i * boardSize + j] == Marks.Cross) result += "X";
-                    else if (board[i * boardSize + j] == Marks.Circle) result += "O";
-                    else result += " ";
+                    string result = "";
+                    for (int j = 0; j < boardSize; j++)
+                    {
+                        if (board[i * boardSize + j] == Marks.Cross) result += "X";
+                        else if (board[i * boardSize + j] == Marks.Circle) result += "O";
+                        else result += " ";
+                    }
+                    rowsOrColomns[i] = result;
                 }
-                rowsOrColomns[i] = result;
-            }
-            for(int i = 0; i < boardSize; i++)
-            {
-                int count = 0;
-                foreach(char c in  rowsOrColomns[i])
+                for (int i = 0; i < boardSize; i++)
                 {
-                    if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                    else count = 0;
-                    if (count == winBy) return true;
+                    int count = 0;
+                    foreach (char c in rowsOrColomns[i])
+                    {
+                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
                 }
-            }
-            for (int i = 0; i < boardSize; i++) rowsOrColomns[i] = "";
-            //Check only the column that could have been affected by the last move
-            for (int i = 0; i < boardSize; i++)
-            {
-                string result = "";
-                for (int j = 0;j<boardSize;j++)
+                for (int i = 0; i < boardSize; i++) rowsOrColomns[i] = "";
+                //Check only the column that could have been affected by the last move
+                for (int i = 0; i < boardSize; i++)
                 {
-                    if (board[j * boardSize + i] == Marks.Cross) result += "X";
-                    else if (board[j*boardSize + i] == Marks.Circle) result += "O";
-                    else result += " ";
+                    string result = "";
+                    for (int j = 0; j < boardSize; j++)
+                    {
+                        if (board[j * boardSize + i] == Marks.Cross) result += "X";
+                        else if (board[j * boardSize + i] == Marks.Circle) result += "O";
+                        else result += " ";
+                    }
+                    rowsOrColomns[i] = result;
                 }
-                rowsOrColomns[i] = result;
-            }
-            for (int i = 0; i < boardSize; i++)
-            {
-                int count = 0;
-                foreach (char c in rowsOrColomns[i])
+                for (int i = 0; i < boardSize; i++)
                 {
-                    if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                    else count = 0;
-                    if (count == winBy) return true;
+                    int count = 0;
+                    foreach (char c in rowsOrColomns[i])
+                    {
+                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
                 }
-            }
-            //Check diagonals
-            for (int i = 0; i < board.Length; i++)
-            {
-                string result;
-                if (board[i] == Marks.Cross) result = "X";
-                else if (board[i] == Marks.Circle) result = "O";
-                else result = " ";
-                diagnals[(i % boardSize) + (i / boardSize)] += result;
-            }
-            for (int i = 0; i < diagnals.Count(); i++)
-            {
-                if (diagnals[i].Length < winBy) continue;
-                int count = 0;
-                foreach (char c in diagnals[i])
+                //Check diagonals
+                for (int i = 0; i < board.Length; i++)
                 {
-                    if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                    else count = 0;
-                    if (count == winBy) return true;
+                    string result;
+                    if (board[i] == Marks.Cross) result = "X";
+                    else if (board[i] == Marks.Circle) result = "O";
+                    else result = " ";
+                    diagnals[(i % boardSize) + (i / boardSize)] += result;
                 }
-            }
-            diagnals.Clear();
-            for(int i = 0; i < board.Length; i++)
-            {
-                string result;
-                if(board[i] == Marks.Cross) result="X";
-                else if (board[i] == Marks.Circle) result = "O";
-                else result = " ";
-                if (i / boardSize == 0) diagnals.Add(result);
-                else if (i % boardSize == 0) diagnals.Insert(0, result);
-                else diagnals[i % boardSize] += result;
-            }
-            for (int i = 0; i < diagnals.Count(); i++)
-            {
-                if (diagnals[i].Length < winBy) continue;
-                int count = 0;
-                foreach (char c in diagnals[i])
+                for (int i = 0; i < diagnals.Count(); i++)
                 {
-                    if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                    else count = 0;
-                    if (count == winBy) return true;
+                    if (diagnals[i].Length < winBy) continue;
+                    int count = 0;
+                    foreach (char c in diagnals[i])
+                    {
+                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
+                }
+                diagnals.Clear();
+                for (int i = 0; i < board.Length; i++)
+                {
+                    string result;
+                    if (board[i] == Marks.Cross) result = "X";
+                    else if (board[i] == Marks.Circle) result = "O";
+                    else result = " ";
+                    if (i / boardSize == 0) diagnals.Add(result);
+                    else if (i % boardSize == 0) diagnals.Insert(0, result);
+                    else diagnals[i % boardSize] += result;
+                }
+                for (int i = 0; i < diagnals.Count(); i++)
+                {
+                    if (diagnals[i].Length < winBy) continue;
+                    int count = 0;
+                    foreach (char c in diagnals[i])
+                    {
+                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
                 }
             }
-            return false;
+            else
+            {
+                //Check only the lines that could have been affected by the last move
+                for (int i = 0; i < boardSize; i++)
+                {
+                    string result = "";
+                    for (int j = 0; j < boardSize; j++)
+                    {
+                        if (board[i * boardSize + j] == Marks.Cross) result += "X";
+                        else if (board[i * boardSize + j] == Marks.Circle) result += "O";
+                        else result += " ";
+                    }
+                    rowsOrColomns[i] = result;
+                }
+                for (int i = 0; i < boardSize; i++)
+                {
+                    int count = 0;
+                    foreach (char c in rowsOrColomns[i])
+                    {
+                        if (c == 'O') count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
+                }
+                for (int i = 0; i < boardSize; i++) rowsOrColomns[i] = "";
+                //Check only the column that could have been affected by the last move
+                for (int i = 0; i < boardSize; i++)
+                {
+                    string result = "";
+                    for (int j = 0; j < boardSize; j++)
+                    {
+                        if (board[j * boardSize + i] == Marks.Cross) result += "X";
+                        else if (board[j * boardSize + i] == Marks.Circle) result += "O";
+                        else result += " ";
+                    }
+                    rowsOrColomns[i] = result;
+                }
+                for (int i = 0; i < boardSize; i++)
+                {
+                    int count = 0;
+                    foreach (char c in rowsOrColomns[i])
+                    {
+                        if (c == 'O') count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
+                }
+                //Check diagonals
+                for (int i = 0; i < board.Length; i++)
+                {
+                    string result;
+                    if (board[i] == Marks.Cross) result = "X";
+                    else if (board[i] == Marks.Circle) result = "O";
+                    else result = " ";
+                    diagnals[(i % boardSize) + (i / boardSize)] += result;
+                }
+                for (int i = 0; i < diagnals.Count(); i++)
+                {
+                    if (diagnals[i].Length < winBy) continue;
+                    int count = 0;
+                    foreach (char c in diagnals[i])
+                    {
+                        if (c == 'O') count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
+                }
+                diagnals.Clear();
+                for (int i = 0; i < board.Length; i++)
+                {
+                    string result;
+                    if (board[i] == Marks.Cross) result = "X";
+                    else if (board[i] == Marks.Circle) result = "O";
+                    else result = " ";
+                    if (i / boardSize == 0) diagnals.Add(result);
+                    else if (i % boardSize == 0) diagnals.Insert(0, result);
+                    else diagnals[i % boardSize] += result;
+                }
+                for (int i = 0; i < diagnals.Count(); i++)
+                {
+                    if (diagnals[i].Length < winBy) continue;
+                    int count = 0;
+                    foreach (char c in diagnals[i])
+                    {
+                        if (c == 'O') count++;
+                        else count = 0;
+                        if (count == winBy) return true;
+                    }
+                }
+            }
+                return false;
         }
     }
 }
