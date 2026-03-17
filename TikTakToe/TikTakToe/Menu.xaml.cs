@@ -24,7 +24,8 @@ namespace TikTakToe
             win = int.Parse(cbWinSelector.SelectionBoxItem.ToString());
             if (win>size)
             {
-                MessageBox.Show("Invalid game parameters. The win condition cannot be greater than the size if the board.")
+                MessageBox.Show("Invalid game parameters. The win condition cannot be greater than the size if the board.");
+                return;
             }
             isMulti = false;
             Game game = new Game(size, win, isMulti);
