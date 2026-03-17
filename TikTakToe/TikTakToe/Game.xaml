@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Game" Height="600" Width="600">
+        Title="Tik Tak Toe" Height="600" Width="600" MinHeight="600" MinWidth="600">
 
     <Window.Resources>
         <Style TargetType="Button">
