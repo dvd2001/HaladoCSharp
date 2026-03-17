@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
         Title="Game" Height="600" Width="600">
-    <Grid>
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="FontSize" Value="70"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid x:Name="grdBoard">
         
     </Grid>
 </Window>
