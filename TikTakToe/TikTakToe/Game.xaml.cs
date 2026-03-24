@@ -84,7 +84,7 @@ namespace TikTakToe
             if (!isMultiplayer)
             {
                 ComputerMove();
-                if (CheckWin(true))
+                if (CheckWin())
                 {
                     MessageBox.Show("Computer wins!");
                     this.Close();
@@ -117,14 +117,18 @@ namespace TikTakToe
             btn.Foreground = Brushes.Red;
         }
 
-        private bool CheckWin(bool isComputer = false)
+        private bool CheckWin()
         {
+            string winX = "", winO = "";
             List<string> rowsOrColomns = new List<string>(boardSize);
             List<string> diagnals = new List<string>(2 * boardSize - 1);
+            for (int i = 0; i< winBy; i++)
+            {
+                winX += "X";
+                winO += "O";
+            }
             for (int i = 0; i < boardSize; i++) rowsOrColomns.Add("");
             for (int i = 0; i < 2 * boardSize - 1; i++) diagnals.Add("");
-            if (!isComputer)
-            {
                 //Check only the lines that could have been affected by the last move
                 for (int i = 0; i < boardSize; i++)
                 {
@@ -139,12 +143,10 @@ namespace TikTakToe
                 }
                 for (int i = 0; i < boardSize; i++)
                 {
-                    int count = 0;
-                    foreach (char c in rowsOrColomns[i])
+                    for(int j = 0;j <= boardSize-winBy; j++)
                     {
-                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                        else count = 0;
-                        if (count == winBy) return true;
+                        string s = rowsOrColomns[i].Substring(j, winBy);
+                        if (s.Equals(winX) || s.Equals(winO)) return true;
                     }
                 }
                 for (int i = 0; i < boardSize; i++) rowsOrColomns[i] = "";
@@ -162,12 +164,10 @@ namespace TikTakToe
                 }
                 for (int i = 0; i < boardSize; i++)
                 {
-                    int count = 0;
-                    foreach (char c in rowsOrColomns[i])
+                    for (int j = 0; j <= boardSize - winBy; j++)
                     {
-                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                        else count = 0;
-                        if (count == winBy) return true;
+                        string s = rowsOrColomns[i].Substring(j, winBy);
+                        if (s.Equals(winX) || s.Equals(winO)) return true;
                     }
                 }
                 //Check diagonals
@@ -181,13 +181,10 @@ namespace TikTakToe
                 }
                 for (int i = 0; i < diagnals.Count(); i++)
                 {
-                    if (diagnals[i].Length < winBy) continue;
-                    int count = 0;
-                    foreach (char c in diagnals[i])
+                    for (int j = 0; j <= diagnals[i].Length - winBy; j++)
                     {
-                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                        else count = 0;
-                        if (count == winBy) return true;
+                        string s = diagnals[i].Substring(j, winBy);
+                        if (s.Equals(winX) || s.Equals(winO)) return true;
                     }
                 }
                 diagnals.Clear();
@@ -203,106 +200,12 @@ namespace TikTakToe
                 }
                 for (int i = 0; i < diagnals.Count(); i++)
                 {
-                    if (diagnals[i].Length < winBy) continue;
-                    int count = 0;
-                    foreach (char c in diagnals[i])
+                    for (int j = 0; j <= diagnals[i].Length - winBy; j++)
                     {
-                        if ((isPlayerOneTurn && c == 'X') || (!isPlayerOneTurn && c == 'O')) count++;
-                        else count = 0;
-                        if (count == winBy) return true;
+                        string s = diagnals[i].Substring(j, winBy);
+                        if (s.Equals(winX) || s.Equals(winO)) return true;
                     }
                 }
-            }
-            else
-            {
-                //Check only the lines that could have been affected by the last move
-                for (int i = 0; i < boardSize; i++)
-                {
-                    string result = "";
-                    for (int j = 0; j < boardSize; j++)
-                    {
-                        if (board[i * boardSize + j] == Marks.Cross) result += "X";
-                        else if (board[i * boardSize + j] == Marks.Circle) result += "O";
-                        else result += " ";
-                    }
-                    rowsOrColomns[i] = result;
-                }
-                for (int i = 0; i < boardSize; i++)
-                {
-                    int count = 0;
-                    foreach (char c in rowsOrColomns[i])
-                    {
-                        if (c == 'O') count++;
-                        else count = 0;
-                        if (count == winBy) return true;
-                    }
-                }
-                for (int i = 0; i < boardSize; i++) rowsOrColomns[i] = "";
-                //Check only the column that could have been affected by the last move
-                for (int i = 0; i < boardSize; i++)
-                {
-                    string result = "";
-                    for (int j = 0; j < boardSize; j++)
-                    {
-                        if (board[j * boardSize + i] == Marks.Cross) result += "X";
-                        else if (board[j * boardSize + i] == Marks.Circle) result += "O";
-                        else result += " ";
-                    }
-                    rowsOrColomns[i] = result;
-                }
-                for (int i = 0; i < boardSize; i++)
-                {
-                    int count = 0;
-                    foreach (char c in rowsOrColomns[i])
-                    {
-                        if (c == 'O') count++;
-                        else count = 0;
-                        if (count == winBy) return true;
-                    }
-                }
-                //Check diagonals
-                for (int i = 0; i < board.Length; i++)
-                {
-                    string result;
-                    if (board[i] == Marks.Cross) result = "X";
-                    else if (board[i] == Marks.Circle) result = "O";
-                    else result = " ";
-                    diagnals[(i % boardSize) + (i / boardSize)] += result;
-                }
-                for (int i = 0; i < diagnals.Count(); i++)
-                {
-                    if (diagnals[i].Length < winBy) continue;
-                    int count = 0;
-                    foreach (char c in diagnals[i])
-                    {
-                        if (c == 'O') count++;
-                        else count = 0;
-                        if (count == winBy) return true;
-                    }
-                }
-                diagnals.Clear();
-                for (int i = 0; i < board.Length; i++)
-                {
-                    string result;
-                    if (board[i] == Marks.Cross) result = "X";
-                    else if (board[i] == Marks.Circle) result = "O";
-                    else result = " ";
-                    if (i / boardSize == 0) diagnals.Add(result);
-                    else if (i % boardSize == 0) diagnals.Insert(0, result);
-                    else diagnals[i % boardSize] += result;
-                }
-                for (int i = 0; i < diagnals.Count(); i++)
-                {
-                    if (diagnals[i].Length < winBy) continue;
-                    int count = 0;
-                    foreach (char c in diagnals[i])
-                    {
-                        if (c == 'O') count++;
-                        else count = 0;
-                        if (count == winBy) return true;
-                    }
-                }
-            }
                 return false;
         }
     }
