@@ -38,7 +38,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
             <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbSizeSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+            <ComboBox x:Name="cbSizeSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
                 <ComboBoxItem Content="3x3" IsSelected="True"/>
                 <ComboBoxItem Content="4x4"/>
                 <ComboBoxItem Content="5x5"/>
@@ -46,14 +46,14 @@
                 <ComboBoxItem Content="7x7"/>
             </ComboBox>
             <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbWinSelector" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+            <ComboBox x:Name="cbWinSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
                 <ComboBoxItem Content="3" IsSelected="True"/>
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
                 <ComboBoxItem Content="6"/>
                 <ComboBoxItem Content="7"/>
             </ComboBox>
-            <Button Click="SinglePlayer_Click" x:Name="btnSinglePLayer" Content="Single Player"/>
+            <Button Click="SinglePlayer_Click" x:Name="btnSinglePlayer" Content="Single Player"/>
             <Button Click="MultiPlayer_Click" x:Name="btnMultiPlayer" Content="Multiplayer"/>
             <Button Click="Exit_Click" x:Name="btnExit" Content="Exit"/>
         </StackPanel>
