@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Tik Tak Toe" Height="600" Width="600" MinHeight="600" MinWidth="600">
+        Title="Tik Tak Toe" Height="600" Width="600" MinHeight="600" MinWidth="600" SizeChanged="Window_SizeChanged">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -13,8 +13,6 @@
             <Setter Property="FontSize" Value="70"/>
         </Style>
     </Window.Resources>
-    
     <Grid x:Name="grdBoard">
-        
     </Grid>
 </Window>
