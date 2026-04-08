@@ -252,6 +252,7 @@ namespace TikTakToe
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if (e.NewSize.Width != e.NewSize.Height) gameWindow.Width = e.NewSize.Height;
             foreach (Border brd in grdBoard.Children)
             {
                 Canvas cnvs = brd.Child as Canvas;
