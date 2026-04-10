@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        x:Name ="gameWindow" Title="Tik Tak Toe" Height="300" Width="300" MinHeight="300" MinWidth="300" SizeChanged="Window_SizeChanged">
+        x:Name ="gameWindow" Title="Tik Tak Toe" Height="400" Width="400" MinHeight="400" MinWidth="400" SizeChanged="Window_SizeChanged">
 
     <Window.Resources>
         <Style TargetType="Button">
