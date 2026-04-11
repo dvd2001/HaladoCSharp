@@ -273,7 +273,6 @@ namespace TikTakToe
                 grdBoard.Width = e.NewSize.Width-20;
                 grdBoard.Height = e.NewSize.Height-43;
             }
-            Console.WriteLine($"gridElementSize: {3*grdBoard.Children.Cast<Border>().First().ActualWidth}\nwindowSize: {gameWindow.ActualWidth}");
             foreach (Border brd in grdBoard.Children)
             {
                 Canvas cnvs = brd.Child as Canvas;
