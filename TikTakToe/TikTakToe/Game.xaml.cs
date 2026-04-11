@@ -18,6 +18,7 @@ namespace TikTakToe
         private int winBy;
         private bool isPlayerOneTurn;
         private bool isMultiplayer;
+        private bool isInitialized = false;
 
         public Game(int size, int win, bool isMulti)
         {
@@ -252,7 +253,27 @@ namespace TikTakToe
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.NewSize.Width != e.NewSize.Height) gameWindow.Width = e.NewSize.Height;
+            if (!isInitialized)
+            {
+                isInitialized = true;
+                return;
+            }
+            if (e.NewSize.Width > e.NewSize.Height)
+            {
+                grdBoard.Width = e.NewSize.Height-20;
+                grdBoard.Height = e.NewSize.Height-43;
+            }
+            else if (e.NewSize.Width < e.NewSize.Height)
+            {
+                grdBoard.Width = e.NewSize.Width-20;
+                grdBoard.Height = e.NewSize.Width-43;
+            }
+            else
+            {
+                grdBoard.Width = e.NewSize.Width-20;
+                grdBoard.Height = e.NewSize.Height-43;
+            }
+            Console.WriteLine($"gridElementSize: {3*grdBoard.Children.Cast<Border>().First().ActualWidth}\nwindowSize: {gameWindow.ActualWidth}");
             foreach (Border brd in grdBoard.Children)
             {
                 Canvas cnvs = brd.Child as Canvas;
