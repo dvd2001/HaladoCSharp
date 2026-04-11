@@ -260,18 +260,18 @@ namespace TikTakToe
             }
             if (e.NewSize.Width > e.NewSize.Height)
             {
-                grdBoard.Width = e.NewSize.Height-20;
-                grdBoard.Height = e.NewSize.Height-43;
+                grdBoard.Width = e.NewSize.Height-17;
+                grdBoard.Height = e.NewSize.Height-40;
             }
             else if (e.NewSize.Width < e.NewSize.Height)
             {
-                grdBoard.Width = e.NewSize.Width-20;
-                grdBoard.Height = e.NewSize.Width-43;
+                grdBoard.Width = e.NewSize.Width-17;
+                grdBoard.Height = e.NewSize.Width-40;
             }
             else
             {
-                grdBoard.Width = e.NewSize.Width-20;
-                grdBoard.Height = e.NewSize.Height-43;
+                grdBoard.Width = e.NewSize.Width-17;
+                grdBoard.Height = e.NewSize.Height-40;
             }
             foreach (Border brd in grdBoard.Children)
             {
