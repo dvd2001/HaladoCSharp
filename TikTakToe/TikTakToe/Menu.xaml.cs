@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
-using TikTakToe;
 
 namespace TikTakToe
 {
