@@ -30,7 +30,6 @@ namespace TikTakToe
             isDarkMode = isDark;
             InitializeComponent();
             NewGame();
-            SetupStyle();
         }
 
         private void NewGame()
