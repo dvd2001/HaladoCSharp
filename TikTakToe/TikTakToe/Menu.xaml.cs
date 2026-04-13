@@ -109,6 +109,22 @@ namespace TikTakToe
                         new Setter(Window.BackgroundProperty, System.Windows.Media.Brushes.Black)
                     }
                 };
+                cbSizeSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+                {
+                    Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+                };
+                cbWinSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+                {
+                    Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+                };
             }
             else
             {
