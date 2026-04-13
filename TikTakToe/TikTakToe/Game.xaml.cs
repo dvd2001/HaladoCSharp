@@ -222,7 +222,7 @@ namespace TikTakToe
             line1.Y1 = 10;
             line1.X2 = cnvs.ActualWidth - 10;
             line1.Y2 = cnvs.ActualHeight - 10;
-            line1.Stroke = Brushes.Blue;
+            line1.Stroke = isDarkMode ? Brushes.Cyan : Brushes.Blue;
             line1.StrokeThickness = 2;
             cnvs.Children.Add(line1);
             Line line2 = new Line();
@@ -230,7 +230,7 @@ namespace TikTakToe
             line2.Y1 = 10;
             line2.X2 = 10;
             line2.Y2 = cnvs.ActualHeight - 10;
-            line2.Stroke = Brushes.Blue;
+            line2.Stroke = isDarkMode ? Brushes.Cyan : Brushes.Blue;
             line2.StrokeThickness = 2;
             cnvs.Children.Add(line2);
             return;
@@ -245,7 +245,7 @@ namespace TikTakToe
             Canvas.SetTop(elp, 10);
             Canvas.SetRight(elp, 10);
             Canvas.SetBottom(elp, 10);
-            elp.Stroke = Brushes.Red;
+            elp.Stroke = isDarkMode ? Brushes.DarkOrange : Brushes.Red;
             elp.StrokeThickness = 2;
             cnvs.Children.Add(elp);
             return;
