@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
+using TikTakToe;
 
 namespace TikTakToe
 {
@@ -14,81 +15,17 @@ namespace TikTakToe
         private bool isMulti;
         private bool isInit;
         private bool isDarkMode;
-        private Style cbDarkStyle;
-        private Style cbLightStyle;
-        private Style btnDarkStyle;
-        private Style btnLightStyle;
-        private Style txtbDarkStyle;
-        private Style txtbLightStyle;
-        private Style lblDarkStyle;
-        private Style lblLightStyle;
-        private Style cbxDarkStyle;
-        private Style cbxLightStyle;
+        private ThemeSwitch themeSwitch = new ThemeSwitch();
 
         public Menu()
         {
             isInit = true;
             InitializeComponent();
             isInit = false;
-            DarkStyleSetUp();
-            LightStyleSetup();
+            themeSwitch.DarkStyleSetUp();
+            themeSwitch.LightStyleSetup();
             SetupStyle();
         }
-
-        private void DarkStyleSetUp()
-        {
-            cbDarkStyle = new Style(typeof(ComboBox));
-            cbDarkStyle.Setters.Add(new Setter(ComboBox.BackgroundProperty, System.Windows.Media.Brushes.Black));
-            cbDarkStyle.Setters.Add(new Setter(ComboBox.ForegroundProperty, System.Windows.Media.Brushes.White));
-            btnDarkStyle = new Style(typeof(Button));
-            btnDarkStyle.Setters.Add(new Setter(Button.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray));
-            btnDarkStyle.Setters.Add(new Setter(Button.ForegroundProperty, System.Windows.Media.Brushes.White));
-            btnDarkStyle.Resources.Add(typeof(Border), new Style(typeof(Border))
-            {
-                Setters =
-                {
-                    new Setter(Border.CornerRadiusProperty, new CornerRadius(10))
-                }
-            });
-            btnDarkStyle.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
-            btnDarkStyle.Setters.Add(new Setter(Button.PaddingProperty, new Thickness(10)));
-            btnDarkStyle.Setters.Add(new Setter(Button.MarginProperty, new Thickness(10)));
-            btnDarkStyle.Setters.Add(new Setter(Button.FontSizeProperty, 30.0));
-            txtbDarkStyle = new Style(typeof(TextBox));
-            txtbDarkStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, System.Windows.Media.Brushes.White));
-            lblDarkStyle = new Style(typeof(Label));
-            lblDarkStyle.Setters.Add(new Setter(Label.ForegroundProperty, System.Windows.Media.Brushes.White));
-            cbxDarkStyle = new Style(typeof(CheckBox));
-            cbxDarkStyle.Setters.Add(new Setter(CheckBox.ForegroundProperty, System.Windows.Media.Brushes.White));
-        }
-
-        private void LightStyleSetup()
-        {
-            cbLightStyle = new Style(typeof(ComboBox));
-            cbLightStyle.Setters.Add(new Setter(ComboBox.BackgroundProperty, System.Windows.Media.Brushes.White));
-            cbLightStyle.Setters.Add(new Setter(ComboBox.ForegroundProperty, System.Windows.Media.Brushes.Black));
-            btnLightStyle = new Style(typeof(Button));
-            btnLightStyle.Setters.Add(new Setter(Button.BackgroundProperty, System.Windows.Media.Brushes.LightGray));
-            btnLightStyle.Setters.Add(new Setter(Button.ForegroundProperty, System.Windows.Media.Brushes.Black));
-            btnLightStyle.Resources.Add(typeof(Border), new Style(typeof(Border))
-            {
-                Setters =
-                {
-                    new Setter(Border.CornerRadiusProperty, new CornerRadius(10))
-                }
-            });
-            btnLightStyle.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
-            btnLightStyle.Setters.Add(new Setter(Button.PaddingProperty, new Thickness(10)));
-            btnLightStyle.Setters.Add(new Setter(Button.MarginProperty, new Thickness(10)));
-            btnLightStyle.Setters.Add(new Setter(Button.FontSizeProperty, 30.0));
-            txtbLightStyle = new Style(typeof(TextBox));
-            txtbLightStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, System.Windows.Media.Brushes.Black));
-            lblLightStyle = new Style(typeof(Label));
-            lblLightStyle.Setters.Add(new Setter(Label.ForegroundProperty, System.Windows.Media.Brushes.Black));
-            cbxLightStyle = new Style(typeof(CheckBox));
-            cbxLightStyle.Setters.Add(new Setter(CheckBox.ForegroundProperty, System.Windows.Media.Brushes.Black));
-        }
-
         private void SetupStyle()
         {
             var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
@@ -100,11 +37,11 @@ namespace TikTakToe
                 {
                     Resources =
                     {
-                        { typeof(ComboBox), cbDarkStyle },
-                        { typeof(Button), btnDarkStyle },
-                        { typeof(TextBox), txtbDarkStyle },
-                        { typeof(Label), lblDarkStyle },
-                        { typeof(CheckBox), cbxDarkStyle }
+                        { typeof(ComboBox), themeSwitch.cbDarkStyle },
+                        { typeof(Button), themeSwitch.btnDarkStyle },
+                        { typeof(TextBox), themeSwitch.txtbDarkStyle },
+                        { typeof(Label), themeSwitch.lblDarkStyle },
+                        { typeof(CheckBox), themeSwitch.cbxDarkStyle }
                     },
                     Setters =
                     {
@@ -118,11 +55,11 @@ namespace TikTakToe
                 {
                     Resources =
                         {
-                            { typeof(ComboBox), cbLightStyle },
-                            { typeof(Button), btnLightStyle },
-                            { typeof(TextBox), txtbLightStyle },
-                            { typeof(Label), lblLightStyle },
-                            { typeof(CheckBox), cbxLightStyle }
+                            { typeof(ComboBox), themeSwitch.cbLightStyle },
+                            { typeof(Button), themeSwitch.btnLightStyle },
+                            { typeof(TextBox), themeSwitch.txtbLightStyle },
+                            { typeof(Label), themeSwitch.lblLightStyle },
+                            { typeof(CheckBox), themeSwitch.cbxLightStyle }
                         },
                     Setters =
                         {
@@ -187,11 +124,11 @@ namespace TikTakToe
         {
             isDarkMode = true;
             Style darkMode = new Style(typeof(Window));
-            darkMode.Resources.Add(typeof(ComboBox), cbDarkStyle);
-            darkMode.Resources.Add(typeof(Button), btnDarkStyle);
-            darkMode.Resources.Add(typeof(TextBox), txtbDarkStyle);
-            darkMode.Resources.Add(typeof(Label), lblDarkStyle);
-            darkMode.Resources.Add(typeof(CheckBox), cbxDarkStyle);
+            darkMode.Resources.Add(typeof(ComboBox), themeSwitch.cbDarkStyle);
+            darkMode.Resources.Add(typeof(Button), themeSwitch.btnDarkStyle);
+            darkMode.Resources.Add(typeof(TextBox), themeSwitch.txtbDarkStyle);
+            darkMode.Resources.Add(typeof(Label), themeSwitch.lblDarkStyle);
+            darkMode.Resources.Add(typeof(CheckBox), themeSwitch.cbxDarkStyle);
             darkMode.Setters.Add(new Setter(Window.BackgroundProperty, System.Windows.Media.Brushes.Black));
             this.Style = darkMode;
         }
@@ -199,11 +136,11 @@ namespace TikTakToe
         {
             isDarkMode = false;
             Style lightMode = new Style(typeof(Window));
-            lightMode.Resources.Add(typeof(ComboBox), cbLightStyle);
-            lightMode.Resources.Add(typeof(Button), btnLightStyle);
-            lightMode.Resources.Add(typeof(TextBox), txtbLightStyle);
-            lightMode.Resources.Add(typeof(Label), lblLightStyle);
-            lightMode.Resources.Add(typeof(CheckBox), cbxLightStyle);
+            lightMode.Resources.Add(typeof(ComboBox), themeSwitch.cbLightStyle);
+            lightMode.Resources.Add(typeof(Button), themeSwitch.btnLightStyle);
+            lightMode.Resources.Add(typeof(TextBox), themeSwitch.txtbLightStyle);
+            lightMode.Resources.Add(typeof(Label), themeSwitch.lblLightStyle);
+            lightMode.Resources.Add(typeof(CheckBox), themeSwitch.cbxLightStyle);
             lightMode.Setters.Add(new Setter(Window.BackgroundProperty, System.Windows.Media.Brushes.White));
             this.Style = lightMode;
         }
