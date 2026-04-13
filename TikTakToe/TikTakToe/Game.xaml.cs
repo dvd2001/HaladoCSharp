@@ -18,14 +18,16 @@ namespace TikTakToe
         private int winBy;
         private bool isPlayerOneTurn;
         private bool isMultiplayer;
+        private bool isDarkMode;
 
-        public Game(int size, int win, bool isMulti)
+        public Game(int size, int win, bool isMulti, bool isDark)
         {
             board = new Marks[size * size];
             boardSize = size;
             winBy = win;
             isPlayerOneTurn = true;
             isMultiplayer = isMulti;
+            isDarkMode = isDark;
             InitializeComponent();
             NewGame();
         }

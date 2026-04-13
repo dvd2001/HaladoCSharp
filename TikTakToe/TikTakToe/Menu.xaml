@@ -5,21 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Menu" Height="600" Width="350" MinHeight="600" MinWidth="350">
-
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Style.Resources>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-    </Window.Resources>
+        Title="Menu" Height="650" Width="350" MinHeight="650" MinWidth="350">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,9 +20,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Column="1" Grid.Row="1" Text="Tik Tak Toe" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0" Background="Transparent" />
+        <TextBox x:Name="txtTitle" Grid.Column="1" Grid.Row="1" Text="Tik Tak Toe" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0" Background="Transparent" />
 
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
+            <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Padding="0" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked"/>
             <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbSizeSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
                 <ComboBoxItem Content="3x3" IsSelected="True"/>
