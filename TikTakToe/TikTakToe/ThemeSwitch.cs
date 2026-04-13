@@ -20,6 +20,10 @@ namespace TikTakToe
         public Style lblLightStyle;
         public Style cbxDarkStyle;
         public Style cbxLightStyle;
+        public Style cvnDarkStyle;
+        public Style cvnLightStyle;
+        public Style brdDarkStyle;
+        public Style brdLightStyle;
 
         public void DarkStyleSetUp()
         {
@@ -46,6 +50,10 @@ namespace TikTakToe
             lblDarkStyle.Setters.Add(new Setter(Label.ForegroundProperty, System.Windows.Media.Brushes.White));
             cbxDarkStyle = new Style(typeof(CheckBox));
             cbxDarkStyle.Setters.Add(new Setter(CheckBox.ForegroundProperty, System.Windows.Media.Brushes.White));
+            cvnDarkStyle = new Style(typeof(Canvas));
+            cvnDarkStyle.Setters.Add(new Setter(Canvas.BackgroundProperty, System.Windows.Media.Brushes.Black));
+            brdDarkStyle = new Style(typeof(Border));
+            brdDarkStyle.Setters.Add(new Setter(Border.BackgroundProperty, System.Windows.Media.Brushes.White));
         }
 
         public void LightStyleSetup()
@@ -73,6 +81,10 @@ namespace TikTakToe
             lblLightStyle.Setters.Add(new Setter(Label.ForegroundProperty, System.Windows.Media.Brushes.Black));
             cbxLightStyle = new Style(typeof(CheckBox));
             cbxLightStyle.Setters.Add(new Setter(CheckBox.ForegroundProperty, System.Windows.Media.Brushes.Black));
+            cvnLightStyle = new Style(typeof(Canvas));
+            cvnLightStyle.Setters.Add(new Setter(Canvas.BackgroundProperty, System.Windows.Media.Brushes.White));
+            brdLightStyle = new Style(typeof(Border));
+            brdLightStyle.Setters.Add(new Setter(Border.BackgroundProperty, System.Windows.Media.Brushes.Black));
         }
     }
 }
