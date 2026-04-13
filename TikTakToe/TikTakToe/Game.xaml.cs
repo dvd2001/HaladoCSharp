@@ -34,6 +34,7 @@ namespace TikTakToe
 
         private void NewGame()
         {
+            this.Background = isDarkMode ? Brushes.Black : Brushes.White;
             for (int i = 0; i < board.Length; i++)
             {
                 board[i] = Marks.Free;
