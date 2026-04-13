@@ -30,6 +30,7 @@ namespace TikTakToe
             isDarkMode = isDark;
             InitializeComponent();
             NewGame();
+            SetupStyle();
         }
 
         private void NewGame()
@@ -51,10 +52,10 @@ namespace TikTakToe
                 for (int j = 0; j < boardSize; j++)
                 {
                     Border newBrd = new Border();
-                    newBrd.BorderBrush = Brushes.Black;
+                    newBrd.BorderBrush = isDarkMode ? Brushes.White : Brushes.Black;
                     newBrd.BorderThickness = new Thickness(1);
                     Canvas newCnvs = new Canvas();
-                    newCnvs.Background = Brushes.White;
+                    newCnvs.Background = isDarkMode ? Brushes.Black : Brushes.White;
                     newCnvs.Name = $"Cnvs{i}{j}";
                     newCnvs.MouseLeftButtonDown += Canvas_Click;
                     newBrd.Child = newCnvs;
@@ -64,7 +65,6 @@ namespace TikTakToe
                 }
             }
         }
-
         private void Canvas_Click(object sender, RoutedEventArgs e)
         {
             Canvas cnvs = sender as Canvas;
