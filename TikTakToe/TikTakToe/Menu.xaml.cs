@@ -9,6 +9,7 @@ namespace TikTakToe
     /// </summary>
     public partial class Menu : Window
     {
+        private string username;
         private int size;
         private int win;
         private int lineThickness;
@@ -26,14 +27,17 @@ namespace TikTakToe
         private Style cbxDarkStyle;
         private Style cbxLightStyle;
 
-        public Menu()
+        public Menu(string username, bool isDarkMode)
         {
+            this.username = username;
+            this.isDarkMode = isDarkMode;
             isInit = true;
             InitializeComponent();
             isInit = false;
             DarkStyleSetUp();
             LightStyleSetup();
             SetupStyle();
+            //SetupSelection();
         }
         public void DarkStyleSetUp()
         {
@@ -48,6 +52,15 @@ namespace TikTakToe
                 Setters =
                 {
                     new Setter(Border.CornerRadiusProperty, new CornerRadius(10))
+                }
+            });
+            btnDarkStyle.Triggers.Add(new Trigger
+            {
+                Property = Button.IsEnabledProperty,
+                Value = false,
+                Setters =
+                {
+                    new Setter(Button.OpacityProperty, 0.5)
                 }
             });
             btnDarkStyle.Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
@@ -90,9 +103,7 @@ namespace TikTakToe
         }
         private void SetupStyle()
         {
-            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-            var value = key?.GetValue("AppsUseLightTheme");
-            if (!(value is bool))
+            if (isDarkMode)
             {
                 cbxDarkMode.IsChecked = true;
                 this.Style = new Style(typeof(Window))
