@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,7 +37,18 @@ namespace TikTakToe
             DarkStyleSetUp();
             LightStyleSetup();
             SetupStyle();
-            //SetupSelection();
+            SetupSelections();
+        }
+        private void SetupSelections()
+        {
+            if (File.Exists($"{username}.txt"))
+            {
+                string[] settings = File.ReadAllLines($"{username}.txt");
+                cbSizeSelector.SelectedIndex = int.Parse(settings[0].Split('x')[0]) - 3;
+                cbWinSelector.SelectedIndex = int.Parse(settings[1]) - 3;
+                cbLineThickness.SelectedIndex = int.Parse(settings[2]) - 1;
+                cbxDarkMode.IsChecked = bool.Parse(settings[3]);
+            }
         }
         public void DarkStyleSetUp()
         {
@@ -194,6 +205,14 @@ namespace TikTakToe
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            string[] settings = new string[]
+            {
+                cbSizeSelector.SelectionBoxItem.ToString(),
+                cbWinSelector.SelectionBoxItem.ToString(),
+                cbLineThickness.SelectionBoxItem.ToString(),
+                cbxDarkMode.IsChecked.ToString()
+            };
+            File.WriteAllLines($"{username}.txt", settings);
             Application.Current.Shutdown();
         }
 
