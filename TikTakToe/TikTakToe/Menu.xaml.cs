@@ -126,6 +126,14 @@ namespace TikTakToe
                         new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
                     }
                 };
+                cbLineThickness.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+                {
+                    Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+                };
             }
             else
             {
@@ -211,6 +219,30 @@ namespace TikTakToe
             darkMode.Resources.Add(typeof(CheckBox), cbxDarkStyle);
             darkMode.Setters.Add(new Setter(Window.BackgroundProperty, System.Windows.Media.Brushes.Black));
             this.Style = darkMode;
+            cbSizeSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+            };
+            cbWinSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+            };
+            cbLineThickness.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.DarkSlateGray),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.White)
+                    }
+            };
         }
         private void DarkMode_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -223,6 +255,30 @@ namespace TikTakToe
             lightMode.Resources.Add(typeof(CheckBox), cbxLightStyle);
             lightMode.Setters.Add(new Setter(Window.BackgroundProperty, System.Windows.Media.Brushes.White));
             this.Style = lightMode;
+            cbSizeSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.White),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.Black)
+                    }
+            };
+            cbWinSelector.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.White),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.Black)
+                    }
+            };
+            cbLineThickness.ItemContainerStyle = new Style(typeof(ComboBoxItem))
+            {
+                Setters =
+                    {
+                        new Setter(ComboBoxItem.BackgroundProperty, System.Windows.Media.Brushes.White),
+                        new Setter(ComboBoxItem.ForegroundProperty, System.Windows.Media.Brushes.Black)
+                    }
+            };
         }
     }
 }
