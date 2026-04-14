@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Menu" Height="650" Width="350" MinHeight="650" MinWidth="350">
+        Title="Menu" Height="750" Width="350" MinHeight="750" MinWidth="350">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,6 +39,14 @@
                 <ComboBoxItem Content="5"/>
                 <ComboBoxItem Content="6"/>
                 <ComboBoxItem Content="7"/>
+            </ComboBox>
+            <Label Content="Line Thickness:" FontSize="18" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbLineThickness" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2" IsSelected="True"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
             </ComboBox>
             <Button Click="SinglePlayer_Click" x:Name="btnSinglePlayer" Content="Single Player"/>
             <Button Click="MultiPlayer_Click" x:Name="btnMultiPlayer" Content="Multiplayer"/>

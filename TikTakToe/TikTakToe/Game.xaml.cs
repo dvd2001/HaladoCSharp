@@ -16,15 +16,17 @@ namespace TikTakToe
         private Marks[] board;
         private int boardSize;
         private int winBy;
+        private int lineThickness;
         private bool isPlayerOneTurn;
         private bool isMultiplayer;
         private bool isDarkMode;
 
-        public Game(int size, int win, bool isMulti, bool isDark)
+        public Game(int size, int win, int line, bool isMulti, bool isDark)
         {
             board = new Marks[size * size];
             boardSize = size;
             winBy = win;
+            lineThickness = line;
             isPlayerOneTurn = true;
             isMultiplayer = isMulti;
             isDarkMode = isDark;
@@ -53,7 +55,7 @@ namespace TikTakToe
                 {
                     Border newBrd = new Border();
                     newBrd.BorderBrush = isDarkMode ? Brushes.White : Brushes.Black;
-                    newBrd.BorderThickness = new Thickness(1);
+                    newBrd.BorderThickness = new Thickness(lineThickness * 0.5);
                     Canvas newCnvs = new Canvas();
                     newCnvs.Background = isDarkMode ? Brushes.Black : Brushes.White;
                     newCnvs.Name = $"Cnvs{i}{j}";
@@ -224,7 +226,7 @@ namespace TikTakToe
             line1.X2 = cnvs.ActualWidth - 10;
             line1.Y2 = cnvs.ActualHeight - 10;
             line1.Stroke = isDarkMode ? Brushes.Cyan : Brushes.Blue;
-            line1.StrokeThickness = 2;
+            line1.StrokeThickness = lineThickness;
             cnvs.Children.Add(line1);
             Line line2 = new Line();
             line2.X1 = cnvs.ActualWidth - 10;
@@ -232,7 +234,7 @@ namespace TikTakToe
             line2.X2 = 10;
             line2.Y2 = cnvs.ActualHeight - 10;
             line2.Stroke = isDarkMode ? Brushes.Cyan : Brushes.Blue;
-            line2.StrokeThickness = 2;
+            line2.StrokeThickness = lineThickness;
             cnvs.Children.Add(line2);
             return;
         }
@@ -247,7 +249,7 @@ namespace TikTakToe
             Canvas.SetRight(elp, 10);
             Canvas.SetBottom(elp, 10);
             elp.Stroke = isDarkMode ? Brushes.DarkOrange : Brushes.Red;
-            elp.StrokeThickness = 2;
+            elp.StrokeThickness = lineThickness;
             cnvs.Children.Add(elp);
             return;
         }

@@ -11,6 +11,7 @@ namespace TikTakToe
     {
         private int size;
         private int win;
+        private int lineThickness;
         private bool isMulti;
         private bool isInit;
         private bool isDarkMode;
@@ -150,8 +151,9 @@ namespace TikTakToe
         {
             size = int.Parse(cbSizeSelector.SelectionBoxItem.ToString().Split('x')[0]);
             win = int.Parse(cbWinSelector.SelectionBoxItem.ToString());
+            lineThickness = int.Parse(cbLineThickness.SelectionBoxItem.ToString());
             isMulti = false;
-            Game game = new Game(size, win, isMulti, isDarkMode);
+            Game game = new Game(size, win, lineThickness, isMulti, isDarkMode);
             game.Show();
             game.Closed += (s, args) => this.Show();
             this.Hide();
@@ -162,8 +164,9 @@ namespace TikTakToe
 
             size = int.Parse(cbSizeSelector.SelectionBoxItem.ToString().Split('x')[0]);
             win = int.Parse(cbWinSelector.SelectionBoxItem.ToString());
+            lineThickness = int.Parse(cbLineThickness.SelectionBoxItem.ToString());
             isMulti = true;
-            Game game = new Game(size, win, isMulti, isDarkMode);
+            Game game = new Game(size, win, lineThickness, isMulti, isDarkMode);
             game.Show();
             game.Closed += (s, args) => this.Show();
             this.Hide();
