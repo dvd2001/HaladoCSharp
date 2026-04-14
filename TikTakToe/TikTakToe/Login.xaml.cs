@@ -106,6 +106,7 @@ namespace TikTakToe
                 }
             });
             btnLight.Setters.Add(new Setter(Button.FontSizeProperty, 30.0));
+            btnLight.Setters.Add(new Setter(Button.MaxWidthProperty, 200.0));
             cbxLight = new Style(typeof(CheckBox));
             cbxLight.Setters.Add(new Setter(CheckBox.ForegroundProperty, Brushes.Black));
             lblLight = new Style(typeof(Label));
