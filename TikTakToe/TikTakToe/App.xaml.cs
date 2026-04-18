@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace TikTakToe
@@ -13,5 +8,15 @@ namespace TikTakToe
     /// </summary>
     public partial class App : Application
     {
+        public void ThemeToggle(bool isDarkMode)
+        {
+            var dict = new ResourceDictionary
+            {
+                Source = new Uri(isDarkMode ? "Themes/DarkTheme.xaml" : "Themes/LightTheme.xaml", UriKind.Relative)
+            };
+            Resources.MergedDictionaries.Clear();
+            Resources.MergedDictionaries.Add(dict);
+        }
+
     }
 }
