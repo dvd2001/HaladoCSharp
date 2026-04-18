@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="400" MinHeight="450" MinWidth="400">
+        Title="Login" Height="450" Width="400" MinHeight="450" MinWidth="400"
+        Background="{DynamicResource AppBackgroundBrush}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -17,12 +18,12 @@
             <RowDefinition Height="6*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="txtTitle" Grid.Column="1" Grid.Row="0" Text="Login" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="Transparent" />
+        <TextBlock x:Name="txtTitle" Grid.Column="1" Grid.Row="0" Text="Login" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="Transparent" Foreground="{DynamicResource TextForegroundBrush}"/>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
-            <Label Content="Username:" FontSize="18" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtUsername" TextChanged="Text_Changed" MinWidth="250" MaxWidth="250" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center"/>
-            <Button Click="Login_Click" x:Name="btnLogin" Content="Login"/>
-            <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Margin="10" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxWidth="110" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked"/>
+            <Label Content="Username:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <TextBox x:Name="txtUsername" TextChanged="Text_Changed" MinWidth="250" MaxWidth="250" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center" Background="{DynamicResource CheckAndTextboxBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <Button Click="Login_Click" x:Name="btnLogin" Content="Login" MaxWidth="200" Background="{DynamicResource ControlBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Margin="10" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxWidth="110" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked" Background="{DynamicResource CheckAndTextboxBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
         </StackPanel>
     </Grid>
 </Window>

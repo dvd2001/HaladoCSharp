@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TikTakToe"
         mc:Ignorable="d"
-        Title="Menu" Height="750" Width="350" MinHeight="750" MinWidth="350">
+        Title="Menu" Height="750" Width="350" MinHeight="750" MinWidth="350"
+        Background="{DynamicResource AppBackgroundBrush}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,37 +21,37 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="txtTitle" Grid.Column="1" Grid.Row="1" Text="Tik Tak Toe" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0" Background="Transparent" />
+        <TextBox x:Name="txtTitle" Grid.Column="1" Grid.Row="1" Text="Tik Tak Toe" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0" Background="Transparent" Foreground="{DynamicResource TextForegroundBrush}"/>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
-            <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Padding="0" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked"/>
-            <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left"/>
+            <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Padding="0" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked" Background="{DynamicResource CheckAndTextboxBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
             <ComboBox x:Name="cbSizeSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
-                <ComboBoxItem Content="3x3" IsSelected="True"/>
-                <ComboBoxItem Content="4x4"/>
-                <ComboBoxItem Content="5x5"/>
-                <ComboBoxItem Content="6x6"/>
-                <ComboBoxItem Content="7x7"/>
+                <ComboBoxItem Content="3x3" IsSelected="True" />
+                <ComboBoxItem Content="4x4" />
+                <ComboBoxItem Content="5x5" />
+                <ComboBoxItem Content="6x6" />
+                <ComboBoxItem Content="7x7" />
             </ComboBox>
-            <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left"/>
+            <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
             <ComboBox x:Name="cbWinSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
-                <ComboBoxItem Content="3" IsSelected="True"/>
-                <ComboBoxItem Content="4"/>
-                <ComboBoxItem Content="5"/>
-                <ComboBoxItem Content="6"/>
-                <ComboBoxItem Content="7"/>
+                <ComboBoxItem Content="3" IsSelected="True" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="5" />
+                <ComboBoxItem Content="6" />
+                <ComboBoxItem Content="7" />
             </ComboBox>
-            <Label Content="Line Thickness:" FontSize="18" HorizontalAlignment="Left"/>
+            <Label Content="Line Thickness:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
             <ComboBox x:Name="cbLineThickness" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
-                <ComboBoxItem Content="1"/>
-                <ComboBoxItem Content="2" IsSelected="True"/>
-                <ComboBoxItem Content="3"/>
-                <ComboBoxItem Content="4"/>
-                <ComboBoxItem Content="5"/>
+                <ComboBoxItem Content="1" />
+                <ComboBoxItem Content="2" IsSelected="True" />
+                <ComboBoxItem Content="3" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="5" />
             </ComboBox>
-            <Button Click="SinglePlayer_Click" x:Name="btnSinglePlayer" Content="Single Player"/>
-            <Button Click="MultiPlayer_Click" x:Name="btnMultiPlayer" Content="Multiplayer"/>
-            <Button Click="Exit_Click" x:Name="btnExit" Content="Exit"/>
+            <Button Click="SinglePlayer_Click" x:Name="btnSinglePlayer" Content="Single Player" Background="{DynamicResource ControlBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <Button Click="MultiPlayer_Click" x:Name="btnMultiPlayer" Content="Multiplayer" Background="{DynamicResource ControlBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
+            <Button Click="Exit_Click" x:Name="btnExit" Content="Exit" Background="{DynamicResource ControlBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
         </StackPanel>
 
     </Grid>
