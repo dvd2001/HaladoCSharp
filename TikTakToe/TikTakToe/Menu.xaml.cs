@@ -37,6 +37,7 @@ namespace TikTakToe
                 cbLineThickness.SelectedIndex = int.Parse(settings[2]) - 1;
                 cbxDarkMode.IsChecked = isDarkMode = bool.Parse(settings[3]);
             }
+            else cbxDarkMode.IsChecked = isDarkMode;
         }
         
         private void SinglePlayer_Click(object sender, RoutedEventArgs e)
