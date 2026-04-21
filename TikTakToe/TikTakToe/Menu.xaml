@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Menu" Height="750" Width="350" MinHeight="750" MinWidth="350"
         Background="{DynamicResource AppBackgroundBrush}">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -26,7 +25,8 @@
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
             <CheckBox x:Name="cbxDarkMode" Content="Dark Mode" Padding="0" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Checked="DarkMode_Checked" Unchecked="DarkMode_Unchecked" Background="{DynamicResource CheckAndTextboxBackgroundBrush}" Foreground="{DynamicResource TextForegroundBrush}"/>
             <Label Content="Select Board Size:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
-            <ComboBox x:Name="cbSizeSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+            <ComboBox x:Name="cbSizeSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center"
+                      Style="{DynamicResource ComboBoxStyle1}">
                 <ComboBoxItem Content="3x3" IsSelected="True" />
                 <ComboBoxItem Content="4x4" />
                 <ComboBoxItem Content="5x5" />
@@ -34,7 +34,8 @@
                 <ComboBoxItem Content="7x7" />
             </ComboBox>
             <Label Content="Win By:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
-            <ComboBox x:Name="cbWinSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+            <ComboBox x:Name="cbWinSelector" SelectionChanged="WinCondition_Changed" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center"
+                      Style="{DynamicResource ComboBoxStyle1}">
                 <ComboBoxItem Content="3" IsSelected="True" />
                 <ComboBoxItem Content="4" />
                 <ComboBoxItem Content="5" />
@@ -42,7 +43,8 @@
                 <ComboBoxItem Content="7" />
             </ComboBox>
             <Label Content="Line Thickness:" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource TextForegroundBrush}"/>
-            <ComboBox x:Name="cbLineThickness" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center">
+            <ComboBox x:Name="cbLineThickness" Margin="10,0,10,10" Padding="10" FontSize="20" HorizontalContentAlignment="Center"
+                      Style="{DynamicResource ComboBoxStyle1}">
                 <ComboBoxItem Content="1" />
                 <ComboBoxItem Content="2" IsSelected="True" />
                 <ComboBoxItem Content="3" />
