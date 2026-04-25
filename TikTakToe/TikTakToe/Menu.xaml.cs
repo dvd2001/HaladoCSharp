@@ -25,7 +25,7 @@ namespace TikTakToe
             InitializeComponent();
             isInit = false;
             SetupSelections();
-            ((App)Application.Current).ThemeToggle(isDarkMode);
+            ((App)Application.Current).ThemeToggle(this.isDarkMode);
         }
         private void SetupSelections()
         {
@@ -35,9 +35,9 @@ namespace TikTakToe
                 cbSizeSelector.SelectedIndex = int.Parse(settings[0].Split('x')[0]) - 3;
                 cbWinSelector.SelectedIndex = int.Parse(settings[1]) - 3;
                 cbLineThickness.SelectedIndex = int.Parse(settings[2]) - 1;
-                cbxDarkMode.IsChecked = isDarkMode = bool.Parse(settings[3]);
+                isDarkMode = bool.Parse(settings[3]);
             }
-            else cbxDarkMode.IsChecked = isDarkMode;
+            cbxDarkMode.IsChecked = isDarkMode;
         }
         
         private void SinglePlayer_Click(object sender, RoutedEventArgs e)
